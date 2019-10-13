@@ -21,9 +21,10 @@ class App extends Component {
         this.refreshList();
   }
   refreshList = () => {
+    console.log(axios.get("/api/school/"));
     axios
-      .get("http://localhost:8080/api/school/")
-      .then(res => this.setState({ schoolList: res.data }))
+      .get("/api/school/")
+      .then(res => this.setState({ schoolList: res.data.objects }))
       .catch(err => console.log(err));
   };
   toggle = () => {
@@ -33,16 +34,16 @@ class App extends Component {
     this.toggle();
     if (item.id) {
           axios
-            .put(`http://localhost:8080/api/school/${item.id}/`, item)
+            .put(`/api/school/${item.id}/`, item)
             .then(res => this.refreshList());
           return;
         }
         axios
-          .post("http://localhost:8080/api/school/", item)
+          .post("/api/school/", item)
           .then(res => this.refreshList());
       };
   handleDelete = item => {
-    axios.delete(`http://localhost:8080/api/school/${item.id}`)
+    axios.delete(`/api/school/${item.id}`)
         .then(res => this.refreshList());
     };
   createItem = () => {
@@ -61,9 +62,9 @@ class App extends Component {
       >
         <span
           className={`mr-2`}
-          title={item.address}
+          title={item.school_code}
         >
-          {item.school_name}({item.school_code})
+          {item.school_name} ({item.school_code})
         </span>
         <span
           className={`mr-2`}
@@ -103,11 +104,11 @@ class App extends Component {
   render() {
     return (
       <main className="content">
-        <h1 className="text-white text-uppercase text-center my-4">Schools</h1>
-        <div className="row ">
-          <div className="col-md-6 col-sm-10 mx-auto p-0">
+        <h1 className="text-white text-uppercase text-center my-4">Greenmile - Schools</h1>
+        <div className="row">
+          <div className="col-md-9 col-sm-10 mx-auto p-0">
             <div className="card p-3">
-              <div className="">
+              <div className="text-right">
                 <button onClick={this.createItem} className="btn btn-primary">
                   Add School
                 </button>

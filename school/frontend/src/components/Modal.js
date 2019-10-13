@@ -34,7 +34,7 @@ import React, { Component } from "react";
             <ModalBody>
               <Form>
                 <FormGroup>
-                  <Label for="title">Name</Label>
+                  <Label for="school_name">Name</Label>
                   <Input
                     type="text"
                     name="school_name"
@@ -44,7 +44,7 @@ import React, { Component } from "react";
                   />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="code">Code</Label>
+                  <Label for="school_code">Code</Label>
                   <Input
                     type="text"
                     name="school_code"
